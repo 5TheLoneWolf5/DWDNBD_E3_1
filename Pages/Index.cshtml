@@ -1,0 +1,42 @@
+﻿@page 
+@* 
+
+--- Comentário --- 
+Diretiva: @model IndexModel.
+
+*@
+@model IndexModel
+@{
+    ViewData["Title"] = "Cadastro de Produto";
+}
+
+<div class="text-center">
+    <h1 class="display-4">@ViewData["Title"]</h1>
+    <p>@Model.prod.Id</p>
+    <p>@Model.prod.Nome</p>
+    <p>@Model.prod.Valor</p>
+
+    Contando a lista: @Model.produtoList.Count
+
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>ID</th>
+                <th>Nome</th>
+                <th>Valor</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var p in Model.produtoList)
+            {
+                <tr>
+                    <td>@p.Id</td>
+                    <td>@p.Nome</td>
+                    <td>@p.Valor</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+
+</div>
