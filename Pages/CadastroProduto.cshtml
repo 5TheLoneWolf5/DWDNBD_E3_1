@@ -1,0 +1,67 @@
+﻿@page "/CadastroProduto"
+@model DWDNBD_E3_1.Pages.CadastroProdutoModel
+@{
+    ViewData["Title"] = "Cadastro de Produto";
+    /* var parteDoDia = "manhã";
+
+    if (DateTime.Now.Hour > 12 && DateTime.Now.Hour < 18)
+    parteDoDia = "tarde";
+    else if (DateTime.Now.Hour > 18)
+        parteDoDia = "noite";
+
+        <h2>Olá, boa @parteDoDia em @DateTime.Now.ToString("dddd, dd MMMM")</h2>
+    */
+}
+
+@functions {
+    string ObterParteDoDia (DateTime dt)
+    {
+        var parteDoDia = "manhã";
+
+        if (DateTime.Now.Hour > 12 && DateTime.Now.Hour < 18)
+            parteDoDia = "tarde";
+        else if (DateTime.Now.Hour > 18)
+            parteDoDia = "noite";
+
+        return parteDoDia;
+    }
+    public class Cidade
+    {
+        public string Nome { get; set; }
+        public string Pais { get; set; }
+    }
+    List<Cidade> cidades = new List<Cidade>
+        {
+            new Cidade { Nome = "Rio de Janeiro", Pais = "Brasil" },
+            new Cidade { Nome = "Moscow", Pais = "Russia" },
+            new Cidade { Nome = "Buenos Aires", Pais = "Argentina" },
+            new Cidade { Nome = "Montevideu", Pais = "Uruguai" }
+        };
+}
+
+<h1>Cadastro de Produtos</h1>
+
+<h2>Olá, boa @ObterParteDoDia(DateTime.Now) em @DateTime.Now.ToString("dddd, dd MMMM")</h2>
+
+<h2>Boa @(DateTime.Now.Hour > 12 ? "Tarde" : "Manhã")</h2>
+
+@**@
+
+@if(DateTime.Now.Hour <= 12) {
+    <h3>Bom dia</h3>
+}
+else if (DateTime.Now.Hour <= 18) {
+    <h3>Boa tarde</h3>
+}
+else {
+    <h3>Boa noite</h3>
+}
+
+<ul>
+    @foreach (var cidade in cidades)
+    {
+        <li>@cidade.Nome - @cidade.Pais</li>
+    }
+</ul>
+
+@Html.Raw("<ul><li>Testing</li></ul>");
